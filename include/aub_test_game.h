@@ -1,13 +1,7 @@
 #ifndef AUB_TEST_GAME_H
 #define AUB_TEST_GAME_H
 
-#include "bn_regular_bg_ptr.h"
-
 #include "bn_sprite_ptr.h"
-#include "bn_sprite_animate_actions.h"
-
-#include "bn_sprite_items_mj_small_pumpkin.h"
-#include "bn_sprite_items_abd_candy.h"
 
 #include "mj/mj_game.h"
 
