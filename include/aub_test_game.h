@@ -27,7 +27,8 @@ public:
 
     [[nodiscard]] int total_frames() const final
     {
-        return _total_frames;
+        //return _total_frames;
+        return minimum_frames;
     }
 
     void fade_in(const mj::game_data& data) final;
