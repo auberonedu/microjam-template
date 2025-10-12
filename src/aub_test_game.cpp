@@ -54,17 +54,18 @@ mj::game_result aub_test_game::play(const mj::game_data& data)
 {
     mj::game_result result;
     _victory = true;
+    bn::fixed player_speed = 2;
     if(bn::keypad::left_held()) {
-        _playerSprite.set_x(_playerSprite.x() - 1);
+        _playerSprite.set_x(_playerSprite.x() - player_speed);
     }
     if(bn::keypad::right_held()) {
-        _playerSprite.set_x(_playerSprite.x() + 1);
+        _playerSprite.set_x(_playerSprite.x() + player_speed);
     }
     if(bn::keypad::up_held()) {
-        _playerSprite.set_y(_playerSprite.y() - 1);
+        _playerSprite.set_y(_playerSprite.y() - player_speed);
     }
     if(bn::keypad::down_held()) {
-        _playerSprite.set_y(_playerSprite.y() + 1);
+        _playerSprite.set_y(_playerSprite.y() + player_speed);
     }
 
     return result;
