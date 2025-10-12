@@ -28,20 +28,6 @@ namespace aub
 aub_test_game::aub_test_game(int completed_games, const mj::game_data& data) :
     mj::game("aub")
 {
-    constexpr int frames_diff = maximum_frames - minimum_frames;
-    constexpr int maximum_speed_completed_games = 30;
-
-    completed_games = bn::min(completed_games, maximum_speed_completed_games);
-
-    int frames_reduction = (frames_diff * completed_games) / maximum_speed_completed_games;
-    _total_frames = maximum_frames - frames_reduction;
-    _total_frames -= data.random.get_int(60);
-    _total_frames = bn::clamp(_total_frames, minimum_frames, maximum_frames);
-
-    gameSpeed = 1 + completed_games*1.0/maximum_speed_completed_games;
-    if(gameSpeed > 2){
-        gameSpeed = 2;
-    }
 
 }
 
@@ -53,7 +39,7 @@ void aub_test_game::fade_in([[maybe_unused]] const mj::game_data& data)
 mj::game_result aub_test_game::play(const mj::game_data& data)
 {
     mj::game_result result;
-    _victory = true;
+    _victory = false;
     bn::fixed player_speed = 2;
     if(bn::keypad::left_held()) {
         _playerSprite.set_x(_playerSprite.x() - player_speed);

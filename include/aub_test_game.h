@@ -27,7 +27,6 @@ public:
 
     [[nodiscard]] int total_frames() const final
     {
-        //return _total_frames;
         return minimum_frames;
     }
 
@@ -37,21 +36,14 @@ public:
 
     [[nodiscard]] bool victory() const final
     {
-        return _victory;
+        return false; //_victory;
     }
 
     void fade_out(const mj::game_data& data) final;
 
 private:
     bn::sprite_ptr _playerSprite = bn::sprite_items::aub_dot.create_sprite(0,0);
-
-    int _total_frames;
-    int _show_result_frames = 30;
-
-    bn::fixed gameSpeed = 1;
-
     bool _victory = false;
-    bool _defeat = false;
 };
 
 }
