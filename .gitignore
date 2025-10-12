@@ -1,4 +1,5 @@
 build/
+debug/
 .vscode/
 .qtc_clangd/
 *.gba

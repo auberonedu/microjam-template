@@ -54,6 +54,13 @@ ifndef LIBBUTANOABS
 	export LIBBUTANOABS	:=	$(realpath $(LIBBUTANO))
 endif
 
+# Allowing for skipping of intro
+# TODO: Allow for testing of a specific game
+BUILD ?= release
+ifeq ($(BUILD),debug)
+  USERFLAGS += -DMJ_SKIP_INITIAL_TITLE=1
+endif
+
 #---------------------------------------------------------------------------------------------------------------------
 # Include main makefile:
 #---------------------------------------------------------------------------------------------------------------------
