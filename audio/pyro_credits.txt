@@ -1,6 +1,0 @@
-pyro_skullcatch_catch.wav
-pyro_skullcatch_drop.wav
-pyro_skullcatch_footstep.wav
-pyro_skullcatch_throw.wav
-	PyroPyro
-	CC0 1.0 Universal (CC0 1.0)
