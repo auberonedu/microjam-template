@@ -25,7 +25,7 @@ namespace aub
 
 // abd::abd_player player;
 
-aub_test_game::aub_test_game(int completed_games, const mj::game_data& data) :
+aub_test_game::aub_test_game([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data& data) :
     mj::game("aub")
 {
 
@@ -36,7 +36,7 @@ void aub_test_game::fade_in([[maybe_unused]] const mj::game_data& data)
    _playerSprite.set_position(0, 0);
 }
 
-mj::game_result aub_test_game::play(const mj::game_data& data)
+mj::game_result aub_test_game::play([[maybe_unused]] const mj::game_data& data)
 {
     mj::game_result result;
     _victory = false;
