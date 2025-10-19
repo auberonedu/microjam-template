@@ -59,6 +59,7 @@ endif
 BUILD ?= release
 ifeq ($(BUILD),debug)
   USERFLAGS += -DMJ_SKIP_INITIAL_TITLE=1
+  USERFLAGS += -DMAX_GAME_SECS=1000
 endif
 
 #---------------------------------------------------------------------------------------------------------------------
