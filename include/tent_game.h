@@ -4,14 +4,11 @@
 #include "bn_sprite_ptr.h"
 
 #include "mj/mj_game.h"
+#include "tent_tentacle.h"
 
-#include "bn_sprite_items_tent_seg.h"
-#include "bn_sprite_items_aub_dot.h"
-
-namespace aub
+namespace tent
 {
 
-const int SEGMENT_HALF_WIDTH = 16;
 const int SEGMENT_COUNT = 3;
 
 class tent_game : public mj::game
@@ -42,10 +39,8 @@ public:
     void fade_out(const mj::game_data& data) final;
 
 private:
-    bn::vector<bn::sprite_ptr, SEGMENT_COUNT> _segments;
     bool _victory = false;
-    bn::fixed_point _base_pos = {0, 0};
-    bn::fixed angle = 0;
+    Tentacle _tentacle;
 };
 
 }
