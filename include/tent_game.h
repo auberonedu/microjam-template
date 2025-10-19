@@ -48,6 +48,7 @@ private:
     bn::sprite_ptr _playerSprite = bn::sprite_items::tent_seg.create_sprite(0,0);
     bn::sprite_ptr _dot_sprite = bn::sprite_items::aub_dot.create_sprite(0,0);
     bool _victory = false;
+    bn::fixed_point _base_pos;
 };
 
 }

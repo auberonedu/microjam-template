@@ -44,8 +44,8 @@ mj::game_result tent_game::play([[maybe_unused]] const mj::game_data& data)
     _victory = false;
     bn::fixed player_speed = 1;
     bn::fixed angle = _playerSprite.rotation_angle();
-    bn::fixed x = _playerSprite.x();
-    bn::fixed y = _playerSprite.y();
+    bn::fixed x = _base_pos.x();
+    bn::fixed y = _base_pos.y();
     if(bn::keypad::left_held()) {
         x -= player_speed;
     }
@@ -64,9 +64,15 @@ mj::game_result tent_game::play([[maybe_unused]] const mj::game_data& data)
     if(bn::keypad::r_held()) {
         angle -= 10;
     }
+    _base_pos = {x, y}; // TODO: is set_x, set_y or explicit constructor faster?
+
+    // Rotate around left end of sprite
     _playerSprite.set_rotation_angle_safe(angle);
+    x += (PLAYER_SPRITE_HALF_WIDTH * bn::degrees_cos(angle));
+    y -= (PLAYER_SPRITE_HALF_WIDTH * bn::degrees_sin(angle));
     _playerSprite.set_position(x, y);
 
+    
     _dot_sprite.set_position(x + (PLAYER_SPRITE_HALF_WIDTH * bn::degrees_cos(angle)), y - (PLAYER_SPRITE_HALF_WIDTH * bn::degrees_sin(angle)));
     // TODO: possible optimization by doing math directly with affine matrix
 
