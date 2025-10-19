@@ -1,5 +1,6 @@
 #include "tent_game.h"
 
+#include "bn_log.h"
 #include "bn_keypad.h"
 #include "bn_sprite_ptr.h"
 #include "bn_sprite_animate_actions.h"
@@ -30,12 +31,13 @@ namespace aub
 tent_game::tent_game([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data& data) :
     mj::game("tent")
 {
-
+    for(int i = 0; i < SEGMENT_COUNT; i++) {
+        _segments.push_back(bn::sprite_items::tent_seg.create_sprite(0, 0));
+    }
 }
 
 void tent_game::fade_in([[maybe_unused]] const mj::game_data& data)
 {
-   _playerSprite.set_position(0, 0);
 }
 
 mj::game_result tent_game::play([[maybe_unused]] const mj::game_data& data)
@@ -43,7 +45,7 @@ mj::game_result tent_game::play([[maybe_unused]] const mj::game_data& data)
     mj::game_result result;
     _victory = false;
     bn::fixed player_speed = 1;
-    bn::fixed angle = _playerSprite.rotation_angle();
+    // bn::fixed angle = _playerSprite.rotation_angle();
     bn::fixed x = _base_pos.x();
     bn::fixed y = _base_pos.y();
     if(bn::keypad::left_held()) {
@@ -66,14 +68,22 @@ mj::game_result tent_game::play([[maybe_unused]] const mj::game_data& data)
     }
     _base_pos = {x, y}; // TODO: is set_x, set_y or explicit constructor faster?
 
+    bn::fixed angle_offset;
     // Rotate around left end of sprite
-    _playerSprite.set_rotation_angle_safe(angle);
-    x += (PLAYER_SPRITE_HALF_WIDTH * bn::degrees_cos(angle));
-    y -= (PLAYER_SPRITE_HALF_WIDTH * bn::degrees_sin(angle));
-    _playerSprite.set_position(x, y);
+    for (int i = 0; i < SEGMENT_COUNT; i++) {
+        angle_offset += angle;
+        _segments[i].set_rotation_angle_safe(angle_offset);
 
+        x += (SEGMENT_HALF_WIDTH * bn::degrees_cos(angle_offset));
+        y -= (SEGMENT_HALF_WIDTH * bn::degrees_sin(angle_offset));
+        _segments[i].set_position(x, y);
+        x += (SEGMENT_HALF_WIDTH * bn::degrees_cos(angle_offset));
+        y -= (SEGMENT_HALF_WIDTH * bn::degrees_sin(angle_offset));
+    }
     
-    _dot_sprite.set_position(x + (PLAYER_SPRITE_HALF_WIDTH * bn::degrees_cos(angle)), y - (PLAYER_SPRITE_HALF_WIDTH * bn::degrees_sin(angle)));
+
+
+    //_dot_sprite.set_position(x + (SEGMENT_HALF_WIDTH * bn::degrees_cos(angle)), y - (SEGMENT_HALF_WIDTH * bn::degrees_sin(angle)));
     // TODO: possible optimization by doing math directly with affine matrix
 
     return result;
