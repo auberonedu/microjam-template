@@ -4,7 +4,7 @@
 #include "bn_sprite_tiles_ptr.h"
 #include "bn_sprite_palette_ptr.h"
 
-#include "bn_sprite_items_mj_bat.h"
+#include "bn_sprite_items_mj2_back_tile.h"
 
 #include "mj/mj_core.h"
 
@@ -152,7 +152,7 @@ void game_backdrop::update(core& core)
             y += sprite_y * 2;
         }
 
-        bn::sprite_ptr sprite = bn::sprite_items::mj_bat.create_sprite(x, y);
+        bn::sprite_ptr sprite = bn::sprite_items::mj2_back_tile.create_sprite(x, y);
         sprite.set_bg_priority(2);
         sprite.set_z_order(-32766);
         sprite.set_blending_enabled(true);
@@ -177,7 +177,7 @@ void game_backdrop::update(core& core)
     }
 
     bn::sprite_tiles_ptr tiles = _sprites[0].tiles();
-    tiles.set_tiles_ref(bn::sprite_items::mj_bat.tiles_item(), _counter / 3);
+    tiles.set_tiles_ref(bn::sprite_items::mj2_back_tile.tiles_item(), _counter / 3);
     _counter = (_counter + 1) % 18;
 
     bn::sprite_palette_ptr palette = _sprites[0].palette();
