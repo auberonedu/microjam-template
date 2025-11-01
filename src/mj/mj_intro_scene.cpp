@@ -9,8 +9,8 @@
 #include "mj/mj_core.h"
 #include "mj/mj_scene_type.h"
 
-#include "bn_regular_bg_items_mj_intro_backdrop.h"
-#include "bn_regular_bg_items_mj_intro_butano.h"
+#include "bn_regular_bg_items_mj2_intro_backdrop.h"
+#include "bn_regular_bg_items_mj2_intro_butano.h"
 
 namespace mj
 {
@@ -33,8 +33,8 @@ namespace
 intro_scene::intro_scene(core& core) :
     _bg_fade_action(_create_bg_fade_action()),
     _sprite_fade_action(_create_sprite_fade_action()),
-    _backdrop(bn::regular_bg_items::mj_intro_backdrop.create_bg((256 - 240) /  2, (256 - 160) / 2)),
-    _butano(bn::regular_bg_items::mj_intro_butano.create_bg(0, 0))
+    _backdrop(bn::regular_bg_items::mj2_intro_backdrop.create_bg((256 - 240) /  2, (256 - 160) / 2)),
+    _butano(bn::regular_bg_items::mj2_intro_butano.create_bg(0, 0))
 {
     bn::string<32> middle_text("BUTANO ");
     middle_text.append(bn::to_string<4>(bn::version::major()));
