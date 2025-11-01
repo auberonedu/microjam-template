@@ -17,7 +17,7 @@ private:
     bn::fixed _angle;
     
 public:
-    Tentacle(int segment_count=3);
+    Tentacle(int segment_count);
     ~Tentacle();
     void set_angle(bn::fixed angle);
     bn::fixed get_angle();

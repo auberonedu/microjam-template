@@ -27,11 +27,10 @@ namespace tent
 {
 
 tent_game::tent_game([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data& data) :
-    mj::game("tent")
+    mj::game("tent"),
+    _tentacle(Tentacle(SEGMENT_COUNT))
 {
-    // for(int i = 0; i < SEGMENT_COUNT; i++) {
-    //     _segments.push_back(bn::sprite_items::tent_seg.create_sprite(0, 0));
-    // }
+
 }
 
 void tent_game::fade_in([[maybe_unused]] const mj::game_data& data)
@@ -43,7 +42,6 @@ mj::game_result tent_game::play([[maybe_unused]] const mj::game_data& data)
     mj::game_result result;
     _victory = false;
     bn::fixed player_speed = 1;
-    // bn::fixed angle = _playerSprite.rotation_angle();
     bn::fixed x = _tentacle.get_base_pos().x();
     bn::fixed y = _tentacle.get_base_pos().y();
     bn::fixed angle = _tentacle.get_angle();
@@ -65,29 +63,10 @@ mj::game_result tent_game::play([[maybe_unused]] const mj::game_data& data)
     if(bn::keypad::r_held()) {
         angle -= 10;
     }
-    //_base_pos = {x, y}; // TODO: is set_x, set_y or explicit constructor faster?
-
-    // bn::fixed angle_offset;
-    // // Rotate around left end of sprite
-    // for (int i = 0; i < SEGMENT_COUNT; i++) {
-    //     angle_offset += angle;
-    //     _segments[i].set_rotation_angle_safe(angle_offset);
-
-    //     x += (SEGMENT_HALF_WIDTH * bn::degrees_cos(angle_offset));
-    //     y -= (SEGMENT_HALF_WIDTH * bn::degrees_sin(angle_offset));
-    //     _segments[i].set_position(x, y);
-    //     x += (SEGMENT_HALF_WIDTH * bn::degrees_cos(angle_offset));
-    //     y -= (SEGMENT_HALF_WIDTH * bn::degrees_sin(angle_offset));
-    // }
 
     _tentacle.set_base_pos(bn::fixed_point(x, y));
     _tentacle.set_angle(angle);
     _tentacle.update();
-    
-
-
-    //_dot_sprite.set_position(x + (SEGMENT_HALF_WIDTH * bn::degrees_cos(angle)), y - (SEGMENT_HALF_WIDTH * bn::degrees_sin(angle)));
-    // TODO: possible optimization by doing math directly with affine matrix
 
     return result;
 }

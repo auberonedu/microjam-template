@@ -9,7 +9,7 @@
 namespace tent
 {
 
-const int SEGMENT_COUNT = 3;
+const int SEGMENT_COUNT = 4;
 
 class tent_game : public mj::game
 {
