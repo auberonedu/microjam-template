@@ -2,16 +2,16 @@
 
 #include "bn_rect_window.h"
 
-#include "bn_regular_bg_items_mj_tombstone_1.h"
-#include "bn_regular_bg_items_mj_tombstone_2.h"
-#include "bn_regular_bg_items_mj_tombstone_3.h"
+#include "bn_regular_bg_items_mj2_title_back_1.h"
+#include "bn_regular_bg_items_mj2_title_back_2.h"
+#include "bn_regular_bg_items_mj2_title_back_3.h"
 
 namespace mj
 {
 
 title_backdrop_1::title_backdrop_1() :
-    _bg_1(bn::regular_bg_items::mj_tombstone_1.create_bg((256 - 240) / 2, (256 - 160) / 2)),
-    _bg_2(bn::regular_bg_items::mj_tombstone_2.create_bg(_bg_1.x() + 240, (256 - 160) / 2)),
+    _bg_1(bn::regular_bg_items::mj2_title_back_1.create_bg((256 - 240) / 2, (256 - 160) / 2)),
+    _bg_2(bn::regular_bg_items::mj2_title_back_2.create_bg(_bg_1.x() + 240, (256 - 160) / 2)),
     _camera(bn::camera_ptr::create(0, 0))
 {
     bn::rect_window internal_window = bn::rect_window::internal();
@@ -41,7 +41,7 @@ bn::optional<bn::fixed> title_backdrop_1::update()
         if(camera_x == 240)
         {
             _bg_1.set_x(_bg_1.x() - 32);
-            _bg_1.set_item(bn::regular_bg_items::mj_tombstone_3);
+            _bg_1.set_item(bn::regular_bg_items::mj2_title_back_3);
         }
         else if(camera_x == 456 - (fade_frames / frames_per_bg_update))
         {
@@ -50,7 +50,7 @@ bn::optional<bn::fixed> title_backdrop_1::update()
         else if(camera_x == 456)
         {
             _bg_1.set_x(_bg_1.x() + 32);
-            _bg_1.set_item(bn::regular_bg_items::mj_tombstone_1);
+            _bg_1.set_item(bn::regular_bg_items::mj2_title_back_1);
             camera_x = 0;
             fade_intensity = 0;
         }

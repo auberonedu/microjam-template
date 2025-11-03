@@ -10,7 +10,6 @@
 #include "mj/mj_core.h"
 #include "mj/mj_scene_type.h"
 #include "mj/mj_title_backdrop_1.h"
-#include "mj/mj_title_backdrop_2.h"
 
 #include "bn_music_items.h"
 #include "bn_sound_items.h"
@@ -35,25 +34,8 @@ title_scene::title_scene(core& core) :
     _affine_mat(bn::sprite_affine_mat_ptr::create()),
     _affine_mat_hbe(bn::sprite_affine_mat_attributes_hbe_ptr::create(_affine_mat, _affine_mat_attributes))
 {
-    sram_data& sram_data = core.sram_data();
-    int old_intro_index = sram_data.intro_index();
-    int new_intro_index = old_intro_index + 1;
 
-    switch(old_intro_index)
-    {
-
-    case 0:
-        _backdrop.reset(new title_backdrop_1());
-        break;
-
-    default:
-        _backdrop.reset(new title_backdrop_2());
-        new_intro_index = 0;
-        break;
-    }
-
-    sram_data.set_intro_index(new_intro_index);
-    sram_data.write();
+    _backdrop.reset(new title_backdrop_1());
 
     bn::bg_palettes::set_fade(bn::color(), 1);
     _bgs_fade_action.emplace(fade_frames, 0);
