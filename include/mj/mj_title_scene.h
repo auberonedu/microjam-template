@@ -35,8 +35,8 @@ private:
     bn::optional<bn::bg_palettes_fade_to_action> _bgs_fade_action;
     bn::optional<bn::sprite_palettes_fade_to_action> _sprites_fade_action;
     bn::optional<bn::music_volume_to_action> _music_volume_action;
-    bn::vector<bn::sprite_ptr, 16> _title_sprites_1;
-    bn::vector<bn::sprite_ptr, 16> _title_sprites_2;
+    //bn::vector<bn::sprite_ptr, 16> _title_sprites_1;
+    //bn::vector<bn::sprite_ptr, 16> _title_sprites_2;
     bn::vector<bn::sprite_ptr, 8> _high_score_sprites;
     bn::vector<bn::sprite_ptr, 4> _play_sprites;
     bn::vector<bn::sprite_ptr, 4> _credits_sprites;
