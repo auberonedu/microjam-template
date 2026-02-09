@@ -28,7 +28,7 @@
 #---------------------------------------------------------------------------------------------------------------------
 TARGET      :=  $(notdir $(CURDIR))
 BUILD       :=  build
-LIBBUTANO   :=  ../butano/butano
+LIBBUTANO   :=  ../../opt/butano/butano
 PYTHON      :=  python
 SOURCES     :=  src $(wildcard src/*)
 INCLUDES    :=  include $(wildcard include/*)
