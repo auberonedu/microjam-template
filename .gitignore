@@ -1,19 +1,58 @@
-build/
-debug/
-.vscode/
-.qtc_clangd/
-*.gba
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Linker files
+*.ilk
+
+# Debugger Files
+*.pdb
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# debug information files
+*.dwo
+
+# Mac folder metadata
+.DS_Store
+
+# Butano build directory 
+build
+
+# GBA compiled files
 *.elf
-*.elf.ltrans*
-*.elf.lto_wrapper_args
-*.elf.res
-*.elf.wpa.args.*
+*.gba
 *.sav
-*.creator
-*.user
-*.files
-*.includes
-*.config
-*.cflags
-*.cxxflags
-microjam23-*.png
+
+# JSON hint for site
+/rom.json
+
+
+debug/
