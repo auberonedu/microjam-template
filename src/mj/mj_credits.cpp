@@ -88,7 +88,7 @@ bool credits::update()
 
 void credits::_generate_text_items()
 {
-    _text_items.push_back("GBA Microjam 23");
+    _text_items.push_back("GBA Microjam Template");
     _text_items.push_back("");
     _text_items.push_back("");
     _text_items.push_back("");
@@ -119,22 +119,7 @@ void credits::_generate_text_items()
     _text_items.push_back("");
 
     text_items_set.clear();
-    text_items_set.insert("codeinfernogames");
-    text_items_set.insert("Pixabay");
-    text_items_set.insert("Emcee Flesher");
-    text_items_set.insert("bevouliin.com");
-    text_items_set.insert("Paul Wortmann");
-    text_items_set.insert("CloutierFontes");
-    text_items_set.insert("Pixel-boy at Sparklin Labs");
-    text_items_set.insert("Evan Bowman");
-    text_items_set.insert("Leonard Pabin");
-    text_items_set.insert("Screaming Brain Studios");
-    text_items_set.insert("GValiente");
-    text_items_set.insert("Pickpik");
-    text_items_set.insert("Jono Shields");
-    text_items_set.insert("vectorportal.com");
-    text_items_set.insert("Sun Ladder");
-    text_items_set.insert("zeoarts");
+    text_items_set.insert("");
 
     for(bn::span<const bn::string_view> game_credits : game_list::get_graphics_credits())
     {
@@ -156,10 +141,7 @@ void credits::_generate_text_items()
     _text_items.push_back("");
 
     text_items_set.clear();
-    text_items_set.insert("Tempest");
-    text_items_set.insert("exelotl");
-    text_items_set.insert("Totsnuk");
-    text_items_set.insert("Ven Sopeña");
+    text_items_set.insert("");
 
     for(bn::span<const bn::string_view> game_credits : game_list::get_music_credits())
     {
@@ -181,8 +163,7 @@ void credits::_generate_text_items()
     _text_items.push_back("");
 
     text_items_set.clear();
-    text_items_set.insert("Tempest");
-    text_items_set.insert("Totsnuk");
+    text_items_set.insert("");
 
     for(bn::span<const bn::string_view> game_credits : game_list::get_sfx_credits())
     {
