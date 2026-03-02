@@ -60,15 +60,6 @@ int game::play_jingle(game_jingle_type jingle, int completed_games, const game_d
         base_seconds = 6;
         break;
 
-    case game_jingle_type::METRONOME_16BEAT:
-        play_music(bn::music_items::mj_metronome_16beat, completed_games, data);
-        break;
-
-    case game_jingle_type::METRONOME_20BEAT:
-        play_music(bn::music_items::mj_metronome_20beat, completed_games, data);
-        base_seconds = 10;
-        break;
-
     default:
         BN_ERROR("Unknown jingle: ", int(jingle));
         break;

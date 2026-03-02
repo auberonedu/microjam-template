@@ -140,7 +140,8 @@ bool pause::update(bool& exit)
                 if(_exit_selected)
                 {
                     exit = true;
-                    bn::sound_items::mj_pause_exit.play();
+                    // TODO: Your pause exit sound
+                    //bn::sound_items::PAUSE_EXIT.play();
                 }
                 else
                 {
@@ -154,14 +155,16 @@ bool pause::update(bool& exit)
             else if(bn::keypad::left_pressed() || bn::keypad::right_pressed())
             {
                 _exit_selected = ! _exit_selected;
-                bn::sound_items::mj_pause_cursor.play();
+                // TODO: Your pause cursor sound
+                //bn::sound_items::PAUSE_CURSOR.play();
             }
         }
 
         if(back_to_game)
         {
             _back_to_game_delay_frames = 14;
-            bn::sound_items::mj_pause_end.play();
+            // TODO: Your pause exit sound
+            //bn::sound_items::PAUSE_EXIT.play();
         }
     }
 
@@ -186,7 +189,8 @@ bool pause::update(bool& exit)
             _sound_master_volume = bn::sound::master_volume();
             bn::sound::stop_all();
             bn::sound::set_master_volume(1);
-            bn::sound_items::mj_pause_begin.play();
+            // TODO: Your pause begin sound
+            //bn::sound_items::mj_pause_begin.play();
         }
         else
         {

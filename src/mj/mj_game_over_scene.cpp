@@ -98,12 +98,14 @@ bn::optional<scene_type> game_over_scene::update()
     else if(bn::keypad::a_pressed())
     {
         _next_scene = scene_type::GAME;
-        bn::sound_items::mj_pause_end.play();
+        // TODO: Add a pause sound
+        //bn::sound_items::YOUR_PAUSE_SOUND.play();
     }
     else if(bn::keypad::b_pressed())
     {
         _next_scene = scene_type::TITLE;
-        bn::sound_items::mj_pause_exit.play();
+        // TODO: Add a pause exit sound
+        //bn::sound_items::YOUR_PAUSE_EXIT_SOUND.play();
     }
 
     return result;

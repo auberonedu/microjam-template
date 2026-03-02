@@ -159,7 +159,8 @@ void title_scene::_update_menu()
             _cursor_sprite.set_y(play_y);
         }
 
-        bn::sound_items::mj_pause_cursor.play();
+        // TODO: Your cursor sound
+        //bn::sound_items::mj_pause_cursor.play();
     }
     else if(bn::keypad::a_pressed())
     {
@@ -184,7 +185,8 @@ void title_scene::_update_menu()
 
         _sprites_fade_action.emplace(fade_frames, 1);
         _cursor_sprite.set_tiles(bn::sprite_items::mj_small_pumpkin.tiles_item(), 13);
-        bn::sound_items::mj_pause_begin.play();
+        // TODO: YOUR STARTING GAME SOUND
+        //bn::sound_items::mj_pause_begin.play();
     }
 }
 
