@@ -13,7 +13,7 @@
             "C_Cpp.default.compilerPath": "/opt/devkitpro/devkitARM/bin/arm-none-eabi-g++",
             "C_Cpp.default.cppStandard": "c++23",
             "C_Cpp.default.includePath": [
-            "${workspaceFolder}/include",
+            "${workspaceFolder}/include/**",
             "${workspaceFolder}/build",
             "/opt/butano/butano/include",
             "/opt/butano/butano/hw/**/include",
