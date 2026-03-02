@@ -14,11 +14,6 @@
 #include "bn_music_items.h"
 #include "bn_sound_items.h"
 #include "bn_sprite_items_mj_small_pumpkin.h"
-#include "bn_sprite_items_mj_title.h"
-#include "bn_sprite_items_mj_title_a.h"
-#include "bn_sprite_items_mj_title_micro.h"
-#include "bn_sprite_items_mj_title_pumpkin.h"
-#include "bn_sprite_items_mj_title_23.h"
 
 namespace mj
 {
