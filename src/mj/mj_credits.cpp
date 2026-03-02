@@ -39,7 +39,8 @@ credits::credits(core& core) :
 {
     _generate_text_items();
 
-    bn::music_items::mj_ven_sopena_halloween.play(0.5);
+    // TODO: Add a song to play
+    //bn::music_items::YOUR_SONG.play(0.5);
 }
 
 int credits::total_frames() const
