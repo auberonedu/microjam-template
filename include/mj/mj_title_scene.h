@@ -48,9 +48,9 @@ private:
 
     void _update_bgs();
 
-    void _create_title_sprites();
+    //void _create_title_sprites();
 
-    void _update_title_sprites(bool update_first);
+    //void _update_title_sprites(bool update_first);
 
     void _set_menu_visible(bool visible);
 

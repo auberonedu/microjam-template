@@ -40,7 +40,6 @@ title_scene::title_scene(core& core) :
     bn::bg_palettes::set_fade(bn::color(), 1);
     _bgs_fade_action.emplace(fade_frames, 0);
 
-    _create_title_sprites();
     bn::blending::set_transparency_alpha(0);
     bn::sprite_palettes::set_fade(bn::color(), 1);
     _sprites_fade_action.emplace(fade_frames, 0);
@@ -59,7 +58,7 @@ title_scene::title_scene(core& core) :
     text_generator.set_left_alignment();
     _cursor_sprite.set_position(_play_sprites[0].position() - bn::fixed_point(28, 0));
 
-    _set_menu_visible(false);
+    _set_menu_visible(true);
 
     bn::music_items::mj_gbahalloween.play(0.55);
 }
@@ -91,14 +90,6 @@ bn::optional<scene_type> title_scene::update()
             result = _next_scene;
         }
     }
-    else if(_title_sprites_1[0].affine_mat())
-    {
-        _update_title_sprites(true);
-    }
-    else if(_title_sprites_2[0].affine_mat())
-    {
-        _update_title_sprites(false);
-    }
     else
     {
         _update_menu();
@@ -128,137 +119,7 @@ void title_scene::_update_bgs()
     }
 }
 
-void title_scene::_create_title_sprites()
-{
-    bn::fixed x = -59;
-    bn::fixed y = -32;
-    _title_sprites_1.push_back(bn::sprite_items::mj_title.create_sprite(x, y));
-    x += 34;
-    _title_sprites_1.push_back(bn::sprite_items::mj_title.create_sprite(x, y, 1));
-    x += 36;
-    _title_sprites_1.push_back(bn::sprite_items::mj_title_a.create_sprite(x, y));
 
-    x -= 24;
-    y += 32;
-    _title_sprites_1.push_back(bn::sprite_items::mj_title.create_sprite(x, y, 2));
-    x += 30;
-    _title_sprites_1.push_back(bn::sprite_items::mj_title_a.create_sprite(x, y, 1));
-    x += 33;
-    _title_sprites_1.push_back(bn::sprite_items::mj_title.create_sprite(x, y, 3));
-    x += 28;
-    _title_sprites_2.push_back(bn::sprite_items::mj_title_23.create_sprite(x, y));
-    x += 20;
-    _title_sprites_2.push_back(bn::sprite_items::mj_title_23.create_sprite(x, y, 1));
-
-    x -= 198;
-    y -= 5;
-    _title_sprites_2.push_back(bn::sprite_items::mj_title_micro.create_sprite(x, y));
-    x += 17;
-    _title_sprites_2.push_back(bn::sprite_items::mj_title_micro.create_sprite(x, y, 1));
-    x += 16;
-    _title_sprites_2.push_back(bn::sprite_items::mj_title_micro.create_sprite(x, y, 2));
-    x += 16;
-    _title_sprites_2.push_back(bn::sprite_items::mj_title_micro.create_sprite(x, y, 3));
-    x += 15;
-    _title_sprites_2.push_back(bn::sprite_items::mj_title_micro.create_sprite(x, y, 4));
-
-    x += 100;
-    y -= 34;
-    _title_sprites_2.push_back(bn::sprite_items::mj_title_pumpkin.create_sprite(x, y));
-
-    for(bn::sprite_ptr& title_sprite : _title_sprites_1)
-    {
-        title_sprite.set_blending_enabled(true);
-        title_sprite.set_affine_mat(_affine_mat);
-        title_sprite.set_double_size_mode(bn::sprite_double_size_mode::ENABLED);
-        title_sprite.set_z_order(-1);
-    }
-
-    for(bn::sprite_ptr& title_sprite : _title_sprites_2)
-    {
-        title_sprite.set_blending_enabled(true);
-        title_sprite.set_affine_mat(_affine_mat);
-        title_sprite.set_double_size_mode(bn::sprite_double_size_mode::ENABLED);
-        title_sprite.set_visible(false);
-    }
-}
-
-void title_scene::_update_title_sprites(bool update_first)
-{
-    bn::fixed transparency_alpha_inc = bn::fixed(1) / title_frames;
-    bn::fixed transparency_alpha = bn::blending::transparency_alpha() + transparency_alpha_inc;
-    bn::fixed intensity_alpha;
-
-    if(transparency_alpha < 1)
-    {
-        bn::fixed rotation_angle = (1 - transparency_alpha) * 360;
-        bn::fixed rotation_angle_inc = (1 - transparency_alpha) * 8;
-        bn::fixed scale = 1;
-
-        if(! update_first)
-        {
-            scale += (1 - transparency_alpha) / 2;
-        }
-
-        if(transparency_alpha < 0.75)
-        {
-            intensity_alpha = 1;
-        }
-        else
-        {
-            intensity_alpha = (1 - transparency_alpha) * 4;
-        }
-
-        for(int index = 0; index < 100; ++index)
-        {
-            bn::affine_mat_attributes& attributes = _affine_mat_attributes[index];
-            attributes.set_scale(scale);
-            attributes.set_rotation_angle(rotation_angle);
-            rotation_angle -= rotation_angle_inc;
-
-            if(rotation_angle < 0)
-            {
-                rotation_angle += 360;
-            }
-        }
-
-        _affine_mat_hbe.reload_attributes_ref();
-    }
-    else
-    {
-        if(update_first)
-        {
-            transparency_alpha = 0;
-
-            for(bn::sprite_ptr& title_sprite : _title_sprites_1)
-            {
-                title_sprite.set_blending_enabled(false);
-                title_sprite.remove_affine_mat();
-            }
-
-            for(bn::sprite_ptr& title_sprite : _title_sprites_2)
-            {
-                title_sprite.set_visible(true);
-            }
-        }
-        else
-        {
-            transparency_alpha = 1;
-
-            for(bn::sprite_ptr& title_sprite : _title_sprites_2)
-            {
-                title_sprite.set_blending_enabled(false);
-                title_sprite.remove_affine_mat();
-            }
-
-            _affine_mat_hbe.set_visible(false);
-            _set_menu_visible(true);
-        }
-    }
-
-    bn::blending::set_transparency_alpha(transparency_alpha);
-    bn::blending::set_intensity_alpha(intensity_alpha);
-}
 
 void title_scene::_set_menu_visible(bool visible)
 {
