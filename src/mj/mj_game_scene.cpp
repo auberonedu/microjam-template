@@ -53,11 +53,12 @@ namespace
     constexpr int game_over_music_position = 18;
     constexpr bn::fixed game_over_music_volume = 0.6;
 
-    void _play_music(int position, bn::fixed volume, bn::fixed tempo)
+    void _play_music([[maybe_unused]] int position, [[maybe_unused]] bn::fixed volume, [[maybe_unused]] bn::fixed tempo)
     {
-        bn::music_items::mj_gbahalloween.play(volume);
-        bn::music::set_position(position);
-        bn::music::set_tempo(tempo);
+        // TODO: Replace with your music
+        //bn::music_items::YOUR_MUSIC.play(volume);
+        // bn::music::set_position(position);
+        // bn::music::set_tempo(tempo);
     }
 }
 

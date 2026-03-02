@@ -55,7 +55,8 @@ title_scene::title_scene(core& core) :
 
     _set_menu_visible(true);
 
-    bn::music_items::mj_gbahalloween.play(0.55);
+    // TODO: Replace with your music
+    //bn::music_items::YOUR_MUSIC.play(0.55);
 }
 
 title_scene::~title_scene()
