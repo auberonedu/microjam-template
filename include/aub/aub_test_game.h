@@ -12,38 +12,27 @@ namespace aub
 
 class aub_test_game : public mj::game
 {
+    public:
+        aub_test_game(int completed_games, const mj::game_data& data);
 
-public:
+        bn::string<16> title() const override;
 
-    static constexpr int minimum_frames = 3 * 60; //!< Minimum number of frames per game.
-    static constexpr int maximum_frames = 5 * 60; //!< Maximum number of frames per game.
+        int total_frames() const override;
 
-    aub_test_game(int completed_games, const mj::game_data& data);
+        void fade_in(const mj::game_data& data) override;
 
-    [[nodiscard]] bn::string<16> title() const final
-    {
-        return "Test game!";
-    }
+        mj::game_result play(const mj::game_data& data) override;
 
-    [[nodiscard]] int total_frames() const final
-    {
-        return minimum_frames;
-    }
+        bool victory() const override;
 
-    void fade_in(const mj::game_data& data) final;
+        void fade_out(const mj::game_data& data) override;
 
-    [[nodiscard]] mj::game_result play(const mj::game_data& data) final;
+    private:
+        bn::sprite_ptr _playerSprite;
+        bool _victory;
 
-    [[nodiscard]] bool victory() const final
-    {
-        return false; //_victory;
-    }
-
-    void fade_out(const mj::game_data& data) final;
-
-private:
-    bn::sprite_ptr _playerSprite = bn::sprite_items::aub_dot.create_sprite(0,0);
-    bool _victory = false;
+        bool out_of_bounds() const;
+        static constexpr bn::fixed PLAYER_SPEED = 3;
 };
 
 }
