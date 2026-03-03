@@ -1,11 +1,10 @@
 #ifndef AUB_TEST_GAME_H
 #define AUB_TEST_GAME_H
 
-#include "bn_sprite_ptr.h"
+#include <bn_sprite_ptr.h>
 
 #include "mj/mj_game.h"
-
-#include "bn_sprite_items_aub_dot.h"
+#include "aub/player.h"
 
 namespace aub
 {
@@ -28,11 +27,7 @@ class aub_test_game : public mj::game
         void fade_out(const mj::game_data& data) override;
 
     private:
-        bn::sprite_ptr _playerSprite;
-        bool _victory;
-
-        bool out_of_bounds() const;
-        static constexpr bn::fixed PLAYER_SPEED = 3;
+        player _player;
 };
 
 }
