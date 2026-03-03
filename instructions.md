@@ -25,7 +25,7 @@
     ```git remote -v```
 
     origin and upstream should have different URLs
-## Wave 1: Branching
+# Wave 1: Branching
 1. ONE partner (partner A) should make an "dev" branch and switch to it:
 
     ```
@@ -47,7 +47,7 @@
 
 ALL OF YOUR COMMITS SHOULD BE IN BRANCHES. DO NOT EVER MAKE NEW COMMITS DIRECTLY TO MAIN, ONLY PULLS/MERGES FROM UPSTREAM.
 
-## Wave 2: Directory setup
+# Wave 2: Directory setup
 In this section we will be setting up some directories and checking that pushing/pulling on our branches works. Please actually do this in 3 commits, alternating partners so we can check that all the pushing/pulling is working correctly. All of this will happen on the `dev` branch, `main` will remain unchanged!
 
 As you go through, DO NOT COMMIT ANY CHANGES TO FILES OTHER THAN THE ONES FOR YOUR GROUP. This includes markdown files, source files, etc.
@@ -71,7 +71,7 @@ As you go through, DO NOT COMMIT ANY CHANGES TO FILES OTHER THAN THE ONES FOR YO
 ## Pull Request
 Make a PR to the upstream. It should come from your `dev` branch. Your `main` branch should still be unchanged!
 
-## Wave 3: Exploration
+# Wave 3: Exploration
 In this section you will be exploring the repository and looking at an example microgame.
 
 1. EVERYONE make the game.
