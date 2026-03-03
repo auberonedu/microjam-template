@@ -1,4 +1,4 @@
-#ifndef AUB_TEST_GAME_H
+#ifndef AUB_TEST_GAME_H // Include guard must start with the 3-letter id
 #define AUB_TEST_GAME_H
 
 #include <bn_sprite_ptr.h>
@@ -6,6 +6,8 @@
 #include "mj/mj_game.h"
 #include "aub/player.h"
 
+
+// All game functions/classes/variables/constants scoped to the namespace
 namespace aub
 {
 
