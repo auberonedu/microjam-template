@@ -160,4 +160,33 @@ In this section we will make a dummy implementation of your game. We will make s
 1. Close the emulator, re-run the ROM, and play the main game not in debug mode by choosing `PLAY`. It will randomly intersperse games, and your game skeleton should show up intermittently.
 1. Once you are satisfied your game is working, make sure you're on a branch other than main, make sure your're not adding any files unintentionally, then add/commit/push
 
+## Wave 5: Game prototype
+Begin implementing your game! By the end of this wave you do NOT need to have a finished game, nor a game that is fun or looks good. You do not need to have all your game mechanics implemented. But it should be making progress towards your overall game goal. You do not need to worry about multiple difficulty levels or game speeds.
 
+### Functionality required for Wave 5
+- The game must take input from the player
+- It must be possible to win/lose the game
+- You should have at least one new sprite that you created and that is used in the game
+- The game must not crash
+- You must create and use at least one ADDITIONAL class that your game uses (for example, `aub::aub_test_game` uses `aub::player`)
+- Your code must have pulled from upstream the recent changes from your classmates in other groups. Pull frequently from upstream!
+
+### Code requirements for Wave 5
+- YOU MUST ONLY MAKE CHANGES IN DIRECTORIES WITH YOUR THREE LETTER IDENTIFIERS
+- YOU MUST NOT COMMIT DIRECTLY TO MAIN
+- ALL NEW CODE MUST BE IN YOUR GROUP'S NAMESPACE
+- New headers must have include guards.
+- You MUST NOT read keypad input in `fade_in`/`fade_out`
+- You MUST NOT call `bn::core::update()`
+- Any sounds/music must ONLY be played using member functions from the `mj::game` superclass: `play_music`, `play_sound`, or `play_jingle`
+
+### Hints
+- START SMALL AND TEST FREQUENTLY.
+    > If you make a ton of changes and it doesn't work, it's really hard to debug! Making small changes helps you make sure things are working at each step. Make small subgoals, e.g. first just make a sprite show up.
+- PULL FROM UPSTREAM AND MAKE COMMITS FREQUENTLY.
+- Consider what instance variables you will need, and add them to the header for your game
+- Add initialization for those instance variables in the initializer list where appropriate
+- You do not need to write your own `while` event loop! `update` is repeated called once per frame.
+- You can make more branches if it's helpful for coordination with your teams.
+
+Once you have a prototype ready for review, make a PR from your branch. Make a NEW BRANCH off of that branch so you can continue working on later waves as you wait for feedback.
