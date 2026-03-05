@@ -21,6 +21,7 @@ namespace aaa
 {
 
     aaa_planetoids::aaa_planetoids([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data &data) : mj::game("aaa")
+
     {
     }
 
@@ -36,6 +37,7 @@ namespace aaa
 
     mj::game_result aaa_planetoids::play([[maybe_unused]] const mj::game_data &data)
     {
+        // enemies update
         return mj::game_result();
     }
 
