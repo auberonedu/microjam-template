@@ -54,7 +54,7 @@ private:
     int _high_scores[3] = {};
     int _intro_index = 0;
     bool _allow_intro_skip = false;
-    int _chosen_game = 0; // TODO: Use title?
+    int _chosen_game = -1; // TODO: Use title?
 };
 
 }
