@@ -1,5 +1,7 @@
 #include "aaa_planetoid.h"
+#include "mj/mj_game_list.h"
 
+MJ_GAME_LIST_ADD(aaa::aaa_planetoids);
 namespace
 {
     constexpr bn::string_view code_credits[] = {"KJ, AK"};
@@ -7,6 +9,13 @@ namespace
     constexpr bn::string_view sfx_credits[] = {"none"};
     constexpr bn::string_view music_credits[] = {"none"};
 }
+
+// Macros used to add game to game list
+MJ_GAME_LIST_ADD(aaa::aaa_planetoids) // The class of the game is used here
+MJ_GAME_LIST_ADD_CODE_CREDITS(code_credits)
+MJ_GAME_LIST_ADD_GRAPHICS_CREDITS(graphics_credits)
+MJ_GAME_LIST_ADD_MUSIC_CREDITS(music_credits)
+MJ_GAME_LIST_ADD_SFX_CREDITS(sfx_credits)
 
 namespace aaa
 {
@@ -17,7 +26,7 @@ namespace aaa
 
     bn::string<16> aaa_planetoids::title() const
     {
-        return "Planetoid";
+        return "Planetoids";
     }
 
     int aaa_planetoids::total_frames() const
