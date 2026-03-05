@@ -11,12 +11,18 @@
 #include <bn_keypad.h>
 #include <bn_fixed_point.h>
 
+#include "bn_sprite_items_mj_dot.h"
+
 namespace mj {
 
 chooser_scene::chooser_scene(core& core) :
-    _core(core) {
+    _core(core),
+    _cursor_idx(-1),
+    _cursor(bn::sprite_items::mj_dot.create_sprite()) {
         bn::backdrop::set_color(bn::color(31, 0, 0));
-        auto& text_generator = _core.small_text_generator();
+
+        auto& text_generator = core.small_text_generator();
+
         game_data fake_game_data = {
             core.text_generator(),
             core.small_text_generator(),
@@ -24,7 +30,10 @@ chooser_scene::chooser_scene(core& core) :
             core.random(),
             300
         };
-        int y = -60;
+        int y = Y_START;
+        text_generator.generate({X_START, y}, "All Games", _game_name_sprites);
+        y += LINE_HEIGHT;
+
         bn::unique_ptr<mj::game> game;
         bn::span<game_list::function_type> game_list_entries = game_list::get();
         for(int i = 0; i < game_list_entries.size(); i++) {
@@ -32,14 +41,29 @@ chooser_scene::chooser_scene(core& core) :
             game.reset(game_list_entry(0, fake_game_data));
             auto title = game->title();
             _game_names.push_back(title);
-            text_generator.generate({0, y}, title, _game_name_sprites);
-            y += 10;
+            text_generator.generate({X_START, y}, title, _game_name_sprites);
+            y += LINE_HEIGHT;
         }
         game.reset();
     }
 
 [[nodiscard]] bn::optional<scene_type> chooser_scene::update() {
     bn::optional<scene_type> next_scene = {};
+
+    if(bn::keypad::down_pressed()) {
+        _cursor_idx += 1;
+        if(_cursor_idx >= _game_names.size()) {
+            _cursor_idx = -1;
+        }
+    }
+    if(bn::keypad::up_pressed()) {
+        _cursor_idx -= 1;
+        if(_cursor_idx < -1) {
+            _cursor_idx = _game_names.size() - 1;
+        }
+    }
+    _cursor.set_x(X_START + CURSOR_OFFSET);
+    _cursor.set_y(Y_START + ((_cursor_idx + 1) * LINE_HEIGHT));
 
     if(bn::keypad::a_pressed()) {
         bn::backdrop::set_color(bn::color(31, 31, 0));

@@ -23,9 +23,14 @@ public:
 private:
     core& _core;
     int _cursor_idx;
+    bn::sprite_ptr _cursor;
     bn::vector<bn::sprite_ptr, 16*64> _game_name_sprites;
-
     bn::vector<bn::string<16>, 64> _game_names;
+
+    static constexpr int CURSOR_OFFSET = -6;
+    static constexpr int X_START = -90;
+    static constexpr int Y_START = -70;
+    static constexpr int LINE_HEIGHT = 10;
 };
 
 }
