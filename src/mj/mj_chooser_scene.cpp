@@ -17,9 +17,9 @@ namespace mj {
 
 chooser_scene::chooser_scene(core& core) :
     _core(core),
-    _cursor_idx(-1),
+    _cursor_idx(_core.sram_data().chosen_game()),
     _cursor(bn::sprite_items::mj_dot.create_sprite()) {
-        bn::backdrop::set_color(bn::color(31, 0, 0));
+        bn::backdrop::set_color(bn::color(0, 0, 0));
 
         auto& text_generator = core.small_text_generator();
 
@@ -66,9 +66,9 @@ chooser_scene::chooser_scene(core& core) :
     _cursor.set_y(Y_START + ((_cursor_idx + 1) * LINE_HEIGHT));
 
     if(bn::keypad::a_pressed()) {
-        bn::backdrop::set_color(bn::color(31, 31, 0));
-    }
-    if(bn::keypad::start_pressed()) {
+        auto& sram_data = _core.sram_data();
+        sram_data.set_chosen_game(_cursor_idx);
+        sram_data.write();
         next_scene.emplace(mj::scene_type::TITLE);
     }
     return next_scene;
