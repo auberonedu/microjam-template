@@ -54,7 +54,7 @@ game_manager::game_manager(int completed_games, const game_data& data, core& cor
         game_history.push_back(game_index);
     }
 
-    int prechosen = core.sram_data().chosen_game();
+    int prechosen = core.chosen_game();
     if(prechosen != -1) {
         game_index = prechosen;
     }

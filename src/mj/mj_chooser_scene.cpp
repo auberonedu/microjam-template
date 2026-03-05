@@ -36,6 +36,13 @@ chooser_scene::chooser_scene(core& core) :
 
         bn::unique_ptr<mj::game> game;
         bn::span<game_list::function_type> game_list_entries = game_list::get();
+
+        // If we have an old save file and games have been removed so our saved idx is invalid,
+        // default to all games
+        if(_cursor_idx >= game_list_entries.size()) {
+            _cursor_idx = -1;
+        }
+
         for(int i = 0; i < game_list_entries.size(); i++) {
             game_list::function_type game_list_entry = game_list_entries[i];
             game.reset(game_list_entry(0, fake_game_data));
@@ -69,8 +76,13 @@ chooser_scene::chooser_scene(core& core) :
         auto& sram_data = _core.sram_data();
         sram_data.set_chosen_game(_cursor_idx);
         sram_data.write();
+        _core.set_chosen_game(_cursor_idx);
+        next_scene.emplace(mj::scene_type::GAME);
+    }
+    else if(bn::keypad::b_pressed()) {
         next_scene.emplace(mj::scene_type::TITLE);
     }
+
     return next_scene;
 }
 
