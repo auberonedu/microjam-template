@@ -1,5 +1,5 @@
-#ifndef AAA_PLANETOID_H
-#define AAA_PLANETOID_H
+#ifndef AAA_ENEMY_H
+#define AAA_ENEMY_H
 
 #include <bn_sprite_ptr.h>
 namespace aaa

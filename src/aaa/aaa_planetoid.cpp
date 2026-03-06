@@ -20,8 +20,7 @@ MJ_GAME_LIST_ADD_SFX_CREDITS(sfx_credits)
 namespace aaa
 {
 
-    aaa_planetoids::aaa_planetoids([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data &data) : mj::game("aaa")
-
+    aaa_planetoids::aaa_planetoids([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data &data) : mj::game("aaa"), _enemy(aaa_enemy({0, 0}, 2))
     {
     }
 
