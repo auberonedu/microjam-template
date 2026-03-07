@@ -58,9 +58,8 @@ namespace aaa
          */
         void fade_out(const mj::game_data &data) override;
 
-        private:
-        // The character that the player can move
-        aaa_enemy _enemy;
+    private:
+        bn::vector<aaa_enemy, 40> enemies;
     };
 }
 

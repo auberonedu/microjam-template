@@ -20,8 +20,17 @@ MJ_GAME_LIST_ADD_SFX_CREDITS(sfx_credits)
 namespace aaa
 {
 
-    aaa_planetoids::aaa_planetoids([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data &data) : mj::game("aaa"), _enemy(aaa_enemy({0, 0}, 2))
+    aaa_planetoids::aaa_planetoids([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data &data) : mj::game("aaa")
     {
+        bn::random random;
+
+        for (int i = 0; i < enemies.max_size(); i++)
+        {
+            bn::fixed_point pos(random.get_int(-200, 200), random.get_int(-120, 120)); // added extra so some enemies spawn off-screen
+            bn::fixed speed = random.get_fixed(.2, .4);                                // nice slow moving enemies
+
+            enemies.push_back(aaa_enemy({pos}, speed));
+        }
     }
 
     bn::string<16> aaa_planetoids::title() const
@@ -31,12 +40,16 @@ namespace aaa
 
     int aaa_planetoids::total_frames() const
     {
-        return 300; // 5 seconds
+        return 480;
     }
 
     mj::game_result aaa_planetoids::play([[maybe_unused]] const mj::game_data &data)
     {
-        // enemies update
+
+        for (aaa_enemy &enemy : enemies)
+        {
+            enemy.update();
+        }
         return mj::game_result();
     }
 
