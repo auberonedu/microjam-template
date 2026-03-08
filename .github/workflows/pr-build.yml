@@ -1,4 +1,4 @@
-name: Build PR preview artifact
+name: Build PR ROM artifact
 
 on:
   pull_request:
@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: read
+  pull-requests: write
 
 jobs:
   build:
@@ -26,16 +27,19 @@ jobs:
 
             ROM="$(ls -1 *.gba | head -n 1)"
 
-            rm -rf site
-            mkdir site
+            REPO="${{ github.event.repository.name }}"
+            PR="${{ github.event.pull_request.number }}"
+            SHA="$(printf '%s' '${{ github.sha }}' | cut -c1-7)"
 
-            cp index.html startEmu.js style.css site/
-            cp "$ROM" "site/$ROM"
-            printf '{ "rom": "%s" }\n' "$ROM" > site/rom.json
+            OUT="${REPO}-pr${PR}-${SHA}.gba"
 
-      - name: Upload site artifact
+            cp "$ROM" "$OUT"
+
+            echo "ROM_OUT=$OUT" >> $GITHUB_ENV
+
+      - name: Upload ROM artifact
         uses: actions/upload-artifact@v7
         with:
-          name: pr-site
-          path: site
-          archive: false
+          name: pr-${{ github.event.pull_request.number }}-rom
+          path: ${{ env.ROM_OUT }}
+          retention-days: 7
