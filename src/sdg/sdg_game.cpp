@@ -1,10 +1,18 @@
+// <classes>
+#include <bn_keypad.h>
+#include <bn_vector.h>
+#include <bn_sprite_ptr.h>
+#include <bn_sprite_animate_actions.h>
+
+// "classes"
 #include "sdg_game.h"
 #include "mj/mj_game_list.h"
+#include "bn_sprite_items_sdg_arrow_sheet.h"
 
 namespace
 {
-    constexpr bn::string_view code_credits[] = { "Iker & Kevin" };
-    constexpr bn::string_view graphics_credits[] = { "Kevin" };
+    constexpr bn::string_view code_credits[] = { "Iker & Kevin James \"bigtoe\" Miclea" };
+    constexpr bn::string_view graphics_credits[] = { "Kevin James \"bigtoe\" Miclea" };
     constexpr bn::string_view sfx_credits[] = {""};
     constexpr bn::string_view music_credits[] = {""};
 }
