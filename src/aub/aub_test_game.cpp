@@ -47,7 +47,7 @@ aub_test_game::aub_test_game([[maybe_unused]] int completed_games, [[maybe_unuse
  * Must be <= 16 characters long
  */
 bn::string<16> aub_test_game::title() const {
-    return "Preview Tes2";
+    return "Preview Tes3";
 }
 
 /**
