@@ -1,6 +1,6 @@
 // Include guard 
 #ifndef SDG_GAME_H 
-#define SGD_GAME_H
+#define SDG_GAME_H
 
 #include "mj/mj_game.h"
 namespace sdg{
