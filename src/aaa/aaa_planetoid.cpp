@@ -20,7 +20,8 @@ MJ_GAME_LIST_ADD_SFX_CREDITS(sfx_credits)
 namespace aaa
 {
 
-    aaa_planetoids::aaa_planetoids([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data &data) : mj::game("aaa")
+    aaa_planetoids::aaa_planetoids([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data &data) : mj::game("aaa"),
+                                                                                                                       _player(bn::fixed_point(0, 0))
     {
         bn::random random;
 
@@ -45,6 +46,7 @@ namespace aaa
 
     mj::game_result aaa_planetoids::play([[maybe_unused]] const mj::game_data &data)
     {
+        _player.update();
 
         for (aaa_enemy &enemy : enemies)
         {

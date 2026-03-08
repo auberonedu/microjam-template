@@ -4,6 +4,7 @@
 
 #include "mj/mj_game.h"
 #include "aaa/aaa_enemy.h"
+#include "aaa_player.h"
 
 namespace aaa
 {
@@ -59,7 +60,8 @@ namespace aaa
         void fade_out(const mj::game_data &data) override;
 
     private:
-        bn::vector<aaa_enemy, 40> enemies;
+        aaa_Player _player;
+        bn::vector<aaa_enemy, 10> enemies;
     };
 }
 
