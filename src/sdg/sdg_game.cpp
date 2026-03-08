@@ -1,3 +1,18 @@
+// TODO:
+/*
+ - Add sprite vector to store set amount of inputs (lets start easy with 3)
+ - Input detection
+ - Add logic for correct inputs by using integers and vectors of integers + win condition if all correct
+ - Reset code if incorrect input is detected
+ PAST THIS POINT IS ADVANCED
+ - win animation
+ - loss animation
+ - difficulty scaling
+ - sfx
+ - background animations while gameplay is occuring
+ - music?
+*/
+
 // <classes>
 #include <bn_keypad.h>
 #include <bn_vector.h>
@@ -30,7 +45,7 @@ namespace sdg{
     {}
 
     bn::string<16> sdg_game::title() const {
-    return "Complete pattern";
+    return "Enter the code!";
     }
 
     int sdg_game::total_frames() const {
