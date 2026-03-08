@@ -1,0 +1,74 @@
+name: Publish PR preview
+
+on:
+  workflow_run:
+    workflows: ["Build PR preview artifact"]
+    types: [completed]
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  publish:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Download artifacts from triggering run
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const run_id = context.payload.workflow_run.id;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
+            const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+              owner,
+              repo,
+              run_id
+            });
+
+            const fs = require('fs');
+            const path = require('path');
+            const { execSync } = require('child_process');
+
+            for (const artifact of artifacts.data.artifacts) {
+              const zip = await github.rest.actions.downloadArtifact({
+                owner,
+                repo,
+                artifact_id: artifact.id,
+                archive_format: 'zip'
+              });
+
+              const out = path.join(process.env.GITHUB_WORKSPACE, `${artifact.name}.zip`);
+              fs.writeFileSync(out, Buffer.from(zip.data));
+              fs.mkdirSync(path.join(process.env.GITHUB_WORKSPACE, artifact.name), { recursive: true });
+              execSync(`unzip -o "${out}" -d "${path.join(process.env.GITHUB_WORKSPACE, artifact.name)}"`);
+            }
+
+      - name: Publish into pr/<number>
+        run: |
+          set -euxo pipefail
+
+          PR_NUMBER="$(cat pr-meta/number.txt)"
+          DEST="gh-pages/pr/${PR_NUMBER}"
+
+          rm -rf "$DEST"
+          mkdir -p "$DEST"
+          cp -R pr-site/. "$DEST/"
+
+          touch gh-pages/.nojekyll
+
+          cd gh-pages
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Update PR preview #${PR_NUMBER}" || exit 0
+          git push
