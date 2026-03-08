@@ -4,7 +4,8 @@
 
 #include "mj/mj_game.h"
 #include "aaa/aaa_enemy.h"
-#include "aaa_player.h"
+#include "aaa/aaa_player.h"
+#include "aaa/aaa_bullet.h"
 
 namespace aaa
 {
@@ -62,6 +63,7 @@ namespace aaa
     private:
         aaa_Player _player;
         bn::vector<aaa_enemy, 10> enemies;
+        bn::vector<aaa_Bullet, 50> bullets;
     };
 }
 

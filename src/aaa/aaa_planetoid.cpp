@@ -1,3 +1,5 @@
+#include <bn_keypad.h>
+
 #include "aaa_planetoid.h"
 #include "mj/mj_game_list.h"
 
@@ -32,6 +34,8 @@ namespace aaa
 
             enemies.push_back(aaa_enemy({pos}, speed));
         }
+
+        
     }
 
     bn::string<16> aaa_planetoids::title() const
@@ -48,9 +52,17 @@ namespace aaa
     {
         _player.update();
 
+        if(bn::keypad::a_pressed()){
+            bullets.push_back(aaa_Bullet(bn::fixed_point(0,0), 5, 1));
+        }
+
         for (aaa_enemy &enemy : enemies)
         {
             enemy.update();
+        }
+
+        for(aaa_Bullet &bullet : bullets){
+            bullet.update();
         }
         return mj::game_result();
     }
