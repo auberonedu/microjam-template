@@ -33,20 +33,9 @@ jobs:
             cp "$ROM" "site/$ROM"
             printf '{ "rom": "%s" }\n' "$ROM" > site/rom.json
 
-      - name: Save PR number
-        run: |
-          set -euxo pipefail
-          mkdir pr-meta
-          printf '%s\n' '${{ github.event.pull_request.number }}' > pr-meta/number.txt
-
       - name: Upload site artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: pr-site
           path: site
-
-      - name: Upload PR metadata
-        uses: actions/upload-artifact@v4
-        with:
-          name: pr-meta
-          path: pr-meta
+          archive: false
