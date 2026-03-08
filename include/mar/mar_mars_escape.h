@@ -1,5 +1,5 @@
-#ifndef MAR_MARS_ESCAPE.H
-#define MAR_MARS_ESCAPE.H
+#ifndef MAR_MARS_ESCAPE_H
+#define MAR_MARS_ESCAPE_H
 
 #include "mj/mj_game.h"
 
