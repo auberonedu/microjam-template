@@ -11,6 +11,8 @@ namespace aaa
 
         void update();
 
+        bn::fixed getAngle();
+
     private:
         // The sprite to display the player
         bn::sprite_ptr _sprite;

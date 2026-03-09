@@ -7,7 +7,7 @@ namespace aaa
     class aaa_Bullet
     {
     public:
-        aaa_Bullet(bn::fixed_point starting_position, int xSpeed, int ySpeed);
+        aaa_Bullet(bn::fixed_point starting_position, bn::fixed speed, bn::fixed angle);
 
         void update();
 
@@ -15,9 +15,10 @@ namespace aaa
         // The sprite to display the player
         bn::sprite_ptr _sprite;
         
-        //x,y speeds
-        int _xSpeed;
-        int _ySpeed;
+        bn::fixed _speed;
+        bn::fixed _angle;
+        bn::fixed vx;
+        bn::fixed vy;
     };
 }
 #endif

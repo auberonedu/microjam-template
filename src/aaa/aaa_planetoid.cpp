@@ -53,7 +53,7 @@ namespace aaa
         _player.update();
 
         if(bn::keypad::a_pressed()){
-            bullets.push_back(aaa_Bullet(bn::fixed_point(0,0), 5, 1));
+            bullets.push_back(aaa_Bullet(bn::fixed_point(0,0), 2, _player.getAngle()));
         }
 
         for (aaa_enemy &enemy : enemies)

@@ -25,4 +25,10 @@ namespace aaa{
             _sprite.set_rotation_angle(_sprite.rotation_angle() - _rotation_speed);
         }
     }
+
+    bn::fixed aaa_Player::getAngle(){
+        return _sprite.rotation_angle();
+    }
+
+    
 }
