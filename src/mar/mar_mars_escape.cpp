@@ -3,6 +3,10 @@
 #include "bn_display.h"
 #include "bn_sprite_ptr.h"
 #include "bn_sprite_animate_actions.h"
+#include <bn_backdrop.h>
+#include <bn_random.h>
+#include <bn_vector.h>
+#include <bn_display.h>
 
 #include "mj/mj_game_list.h"
 
@@ -36,6 +40,7 @@ namespace mar
      */
     mar_mars_escape::mar_mars_escape([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data &data) : mj::game("mar"),
                                                                                                                          _player(mar_player({20, 0}, 2))
+                                                                                                                         //,_enemy(mar_enemy({MAX_X, 0},1))
     {
     }
 
@@ -46,7 +51,7 @@ namespace mar
      */
     bn::string<16> mar_mars_escape::title() const
     {
-        return "Leave the screen";
+        return "Dont Die";
     }
 
     /**
@@ -56,7 +61,7 @@ namespace mar
      */
     int mar_mars_escape::total_frames() const
     {
-        return 300; // 300 frames at 60fps = 5 seconds
+        return 600; // 600 frames at 60fps = 10 seconds
     }
 
     /**
@@ -73,6 +78,8 @@ namespace mar
     {
         // update the player position
         _player.update();
+
+        
 
         // Creates a game result indicating whether the game is finished and whether the title should be hidden early
         // For this game the game should end early if the player has won (if victory returns true)

@@ -3,6 +3,7 @@
 
 #include "mj/mj_game.h"
 #include "mar/mar_player.h"
+#include "mar/mar_enemy.h"
 
 namespace mar
 {
@@ -68,6 +69,8 @@ namespace mar
     private:
         // The character that the player can move
         mar_player _player;
+        
+        //mar_enemy _enemy;
     };
 }
 #endif
