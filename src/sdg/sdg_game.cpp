@@ -1,8 +1,8 @@
 // TODO:
 /*
- - Add sprite vector to store set amount of inputs (lets start easy with 3)
+ - Add vector to store set amount of inputs (lets start easy with 3)
  - Input detection
- - Add logic for correct inputs by using integers and vectors of integers + win condition if all correct
+ - Add logic for correct inputs + win condition if all correct
  - Reset code if incorrect input is detected
  PAST THIS POINT IS ADVANCED
  - win animation
@@ -42,7 +42,12 @@ MJ_GAME_LIST_ADD_SFX_CREDITS(sfx_credits)
 namespace sdg{
     sdg_game::sdg_game([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data& data) :
     mj::game("sdg")
-    {}
+    {
+    }
+    const int challenge[4] = {0, 1, 2, 3};
+
+    int progress = 0;
+    bool challenge_completed = false;
 
     bn::string<16> sdg_game::title() const {
     return "Enter the code!";
@@ -54,6 +59,23 @@ namespace sdg{
 
     mj::game_result sdg_game::play(const mj::game_data& data)
     {
+        int input;
+        if(bn::keypad::up_pressed()) { input = 0; }
+        else if(bn::keypad::right_pressed()) { input = 1; }
+        else if(bn::keypad::down_pressed()) { input = 2; }
+        else if(bn::keypad::left_pressed()) { input = 3; }
+        else {input = -1;}
+
+        if(input != -1) {
+            if(input == challenge[progress])
+            {
+                progress += 1;
+                if (progress == 5) { challenge_completed = true; }
+            }
+            // reset if incorrect
+            else { progress = 0; }
+        }
+
         return mj::game_result();
     }
 
