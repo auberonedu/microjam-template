@@ -10,6 +10,7 @@ namespace aaa
         aaa_Bullet(bn::fixed_point starting_position, bn::fixed speed, bn::fixed angle);
 
         void update();
+        bn::fixed_point BulletPos();
 
     private:
         // The sprite to display the player

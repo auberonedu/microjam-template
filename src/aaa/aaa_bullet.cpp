@@ -5,7 +5,8 @@
 #include "aaa/aaa_bullet.h"
 #include "bn_sprite_items_aaa_bullet.h"
 
-namespace aaa{
+namespace aaa
+{
 
     aaa_Bullet::aaa_Bullet(bn::fixed_point starting_position, bn::fixed speed, bn::fixed angle) : _sprite(bn::sprite_items::aaa_bullet.create_sprite(starting_position)),
                                                                                                   _speed(speed),
@@ -18,5 +19,9 @@ namespace aaa{
         BN_LOG(vx);
         _sprite.set_x(_sprite.x() + vx);
         _sprite.set_y(_sprite.y() + vy);
+    }
+    bn::fixed_point aaa_Bullet::BulletPos()
+    {
+        return bn::fixed_point(_sprite.x(), _sprite.y());
     }
 }
