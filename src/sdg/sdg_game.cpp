@@ -41,10 +41,6 @@ namespace sdg{
     mj::game("sdg"), __input(input())
     {
     }
-    const int challenge[4] = {0, 1, 2, 3};
-
-    int progress = 0;
-    bool challenge_completed = false;
 
     bn::string<16> sdg_game::title() const {
     return "Enter the code!";
