@@ -2,7 +2,7 @@
 
 #include "aaa_planetoid.h"
 #include "mj/mj_game_list.h"
-
+#include "bn_display.h"
 MJ_GAME_LIST_ADD(aaa::aaa_planetoids);
 namespace
 {
@@ -34,8 +34,6 @@ namespace aaa
 
             enemies.push_back(aaa_enemy({pos}, speed));
         }
-
-        
     }
 
     bn::string<16> aaa_planetoids::title() const
@@ -52,8 +50,12 @@ namespace aaa
     {
         _player.update();
 
-        if(bn::keypad::a_pressed()){
-            bullets.push_back(aaa_Bullet(bn::fixed_point(0,0), 5, 1));
+        if (bn::keypad::a_pressed())
+        {
+            if (bullets.size() != bullets.max_size()) // this makes it so that only the max amount of bullets can be on screen at a time, i tried to resize rthe bullets vector but could not so i did this bandaid fix
+            {
+                bullets.push_back(aaa_Bullet(bn::fixed_point(0, 0), 5, 1));
+            }
         }
 
         for (aaa_enemy &enemy : enemies)
@@ -61,8 +63,17 @@ namespace aaa
             enemy.update();
         }
 
-        for(aaa_Bullet &bullet : bullets){
-            bullet.update();
+        for (int i = bullets.size() - 1; i >= 0; --i)
+        {
+            bullets[i].update();
+
+            bn::fixed bX = bullets[i].BulletPos().x();
+            bn::fixed bY = bullets[i].BulletPos().y();
+
+            if (bX > bn::display::width() / 2 || bY > bn::display::height() / 2)
+            {
+                bullets.erase(bullets.begin() + i);
+            }
         }
         return mj::game_result();
     }
