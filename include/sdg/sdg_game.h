@@ -3,6 +3,8 @@
 #define SDG_GAME_H
 
 #include "mj/mj_game.h"
+#include "sdg/input.h"
+
 namespace sdg{
     class sdg_game : public mj::game {
     public:
@@ -16,6 +18,7 @@ namespace sdg{
 
     mj::game_result play(const mj::game_data& data) override;
 
+    // returns true if the code entered is correct
     bool victory() const override;
 
     
@@ -23,6 +26,10 @@ namespace sdg{
 
     
     void fade_out(const mj::game_data& data) override;
+
+    private:
+        // An instance of the players capability to input
+        input __input;
 }; 
 }
 

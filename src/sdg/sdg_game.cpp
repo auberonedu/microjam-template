@@ -13,16 +13,13 @@
  - music?
 */
 
-// <classes>
-#include <bn_keypad.h>
-#include <bn_vector.h>
 #include <bn_sprite_ptr.h>
 #include <bn_sprite_animate_actions.h>
 
-// "classes"
 #include "sdg_game.h"
+#include "sdg/input.h"
 #include "mj/mj_game_list.h"
-#include "bn_sprite_items_sdg_arrow_sheet.h"
+
 
 namespace
 {
@@ -41,7 +38,7 @@ MJ_GAME_LIST_ADD_SFX_CREDITS(sfx_credits)
 
 namespace sdg{
     sdg_game::sdg_game([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data& data) :
-    mj::game("sdg")
+    mj::game("sdg"), __input(input())
     {
     }
     const int challenge[4] = {0, 1, 2, 3};
@@ -59,28 +56,14 @@ namespace sdg{
 
     mj::game_result sdg_game::play(const mj::game_data& data)
     {
-        int input;
-        if(bn::keypad::up_pressed()) { input = 0; }
-        else if(bn::keypad::right_pressed()) { input = 1; }
-        else if(bn::keypad::down_pressed()) { input = 2; }
-        else if(bn::keypad::left_pressed()) { input = 3; }
-        else {input = -1;}
+        __input.update();
 
-        if(input != -1) {
-            if(input == challenge[progress])
-            {
-                progress += 1;
-                if (progress == 5) { challenge_completed = true; }
-            }
-            // reset if incorrect
-            else { progress = 0; }
-        }
-
+        mj::game_result result(victory(), false);
         return mj::game_result();
     }
 
     bool sdg_game::victory() const {
-        return false;
+        return __input.code_is_correct();
     }
 
     void sdg_game::fade_in([[maybe_unused]] const mj::game_data& data)
