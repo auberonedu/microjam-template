@@ -54,7 +54,7 @@ namespace aaa
         {
             if (bullets.size() != bullets.max_size()) // this makes it so that only the max amount of bullets can be on screen at a time, i tried to resize rthe bullets vector but could not so i did this bandaid fix
             {
-                bullets.push_back(aaa_Bullet(bn::fixed_point(0, 0), 5, 1));
+                bullets.push_back(aaa_Bullet(bn::fixed_point(0, 0), 5, _player.getAngle()));
             }
         }
 
