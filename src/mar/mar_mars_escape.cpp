@@ -51,7 +51,7 @@ namespace mar
      */
     bn::string<16> mar_mars_escape::title() const
     {
-        return "Dont Die";
+        return "Escape Mars!";
     }
 
     /**

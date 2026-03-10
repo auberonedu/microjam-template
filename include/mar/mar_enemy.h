@@ -13,7 +13,7 @@ namespace mar
     /**
      * A character controlled with the d-pad.
      */
-    class mar_player
+    class mar_enemy
     {
         // The bounds of the screen
         static constexpr int MAX_X = bn::display::width() / 2;
@@ -28,7 +28,7 @@ namespace mar
          * @param starting_position the location to start the player at
          * @param speed the pixels/frame the player moves at in each dimension
          */
-        mar_player(bn::fixed_point starting_position, bn::fixed speed);
+        mar_enemy(bn::fixed_point starting_position, bn::fixed speed);
 
         // move the enemy
         void update();

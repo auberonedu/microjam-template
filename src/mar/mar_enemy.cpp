@@ -8,7 +8,7 @@ namespace mar{
      * @param starting_position the location to start the mar_player at
      * @param speed the pixels/frame the mar_player moves at in each dimension
      */
-    mar_player::mar_player(
+    mar_enemy::mar_enemy(
         bn::fixed_point starting_position, 
         bn::fixed speed) :                              
             _sprite(
@@ -20,7 +20,7 @@ namespace mar{
     {
     }
 
-    void mar_player::update()
+    void mar_enemy::update()
     {
         _sprite.set_y(_sprite.y() - _speed);
     }
