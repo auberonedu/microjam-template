@@ -13,7 +13,6 @@
 int main()
 {
     bn::core::init();
-        
     bn::unique_ptr<mj::core> core_ptr(new mj::core());
     mj::core& core = *core_ptr;
 

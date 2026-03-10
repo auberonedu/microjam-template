@@ -3,13 +3,13 @@
 #include "aaa_planetoid.h"
 #include "mj/mj_game_list.h"
 #include "bn_display.h"
-MJ_GAME_LIST_ADD(aaa::aaa_planetoids);
+
 namespace
 {
-    constexpr bn::string_view code_credits[] = {"KJ, AK"};
-    constexpr bn::string_view graphics_credits[] = {"Planetoids Graphics Assets"};
-    constexpr bn::string_view sfx_credits[] = {"none"};
-    constexpr bn::string_view music_credits[] = {"none"};
+    constexpr bn::string_view code_credits[] = {"KJ, Adam Kurfurst"};
+    constexpr bn::string_view graphics_credits[] = {"KJ, Adam Kurfurst"};
+    constexpr bn::string_view sfx_credits[] = {""};
+    constexpr bn::string_view music_credits[] = {""};
 }
 
 // Macros used to add game to game list
@@ -70,7 +70,7 @@ namespace aaa
             bn::fixed bX = bullets[i].BulletPos().x();
             bn::fixed bY = bullets[i].BulletPos().y();
 
-            if (bX > bn::display::width() / 2 || bY > bn::display::height() / 2)
+            if (bX > bn::display::width() / 2 || bY > bn::display::height() / 2 || bX < -bn::display::width() / 2 || bY < -bn::display::height() / 2)
             {
                 bullets.erase(bullets.begin() + i);
             }

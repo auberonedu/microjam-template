@@ -13,13 +13,13 @@ namespace aaa{
     void aaa_Player::update(){
         //rotate player
         if(bn::keypad::left_held()){
-            if(_sprite.rotation_angle() == 360){
+            if(_sprite.rotation_angle() >= 360){
                 _sprite.set_rotation_angle(0);
             }
             _sprite.set_rotation_angle(_sprite.rotation_angle() + _rotation_speed);
         }
         if(bn::keypad::right_held()){
-            if(_sprite.rotation_angle() == 0){
+            if(_sprite.rotation_angle() <= 0){
                 _sprite.set_rotation_angle(360);
             }
             _sprite.set_rotation_angle(_sprite.rotation_angle() - _rotation_speed);
