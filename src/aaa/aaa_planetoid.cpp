@@ -2,6 +2,7 @@
 
 #include "aaa_planetoid.h"
 #include "mj/mj_game_list.h"
+#include "mj/mj_game_data.h"
 #include "bn_display.h"
 
 namespace
@@ -25,20 +26,19 @@ namespace aaa
     aaa_planetoids::aaa_planetoids([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data &data) : mj::game("aaa"),
                                                                                                                        _player(bn::fixed_point(0, 0))
     {
-        bn::random random;
 
-        for (int i = 0; i < enemies.max_size(); i++)
+        for (int i = 0; i < _enemies.max_size(); i++)
         {
-            bn::fixed_point pos(random.get_int(-200, 200), random.get_int(-120, 120)); // added extra so some enemies spawn off-screen
-            bn::fixed speed = random.get_fixed(.2, .4);                                // nice slow moving enemies
+            bn::fixed_point pos(data.random.get_int(-200, 200), data.random.get_int(-120, 120)); // added extra so some enemies spawn off-screen
+            bn::fixed speed = data.random.get_fixed(.2, .4);                                // nice slow moving enemies
 
-            enemies.push_back(aaa_enemy({pos}, speed));
+            _enemies.push_back(aaa_enemy({pos}, speed));
         }
     }
 
     bn::string<16> aaa_planetoids::title() const
     {
-        return "Planetoids";
+        return "Shoot asteroids!";
     }
 
     int aaa_planetoids::total_frames() const
@@ -52,27 +52,27 @@ namespace aaa
 
         if (bn::keypad::a_pressed())
         {
-            if (bullets.size() != bullets.max_size()) // this makes it so that only the max amount of bullets can be on screen at a time, i tried to resize rthe bullets vector but could not so i did this bandaid fix
+            if (_bullets.size() != _bullets.max_size()) // this makes it so that only the max amount of bullets can be on screen at a time, i tried to resize rthe bullets vector but could not so i did this bandaid fix
             {
-                bullets.push_back(aaa_Bullet(bn::fixed_point(0, 0), 5, _player.getAngle()));
+                _bullets.push_back(aaa_Bullet(bn::fixed_point(0, 0), 5, _player.getAngle()));
             }
         }
 
-        for (aaa_enemy &enemy : enemies)
+        for (aaa_enemy &enemy : _enemies)
         {
             enemy.update();
         }
 
-        for (int i = bullets.size() - 1; i >= 0; --i)
+        for (int i = _bullets.size() - 1; i >= 0; --i)
         {
-            bullets[i].update();
+            _bullets[i].update();
 
-            bn::fixed bX = bullets[i].BulletPos().x();
-            bn::fixed bY = bullets[i].BulletPos().y();
+            bn::fixed bX = _bullets[i].BulletPos().x();
+            bn::fixed bY = _bullets[i].BulletPos().y();
 
             if (bX > bn::display::width() / 2 || bY > bn::display::height() / 2 || bX < -bn::display::width() / 2 || bY < -bn::display::height() / 2)
             {
-                bullets.erase(bullets.begin() + i);
+                _bullets.erase(_bullets.begin() + i);
             }
         }
         return mj::game_result();

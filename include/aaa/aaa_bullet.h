@@ -18,8 +18,8 @@ namespace aaa
         
         bn::fixed _speed;
         bn::fixed _angle;
-        bn::fixed vx;
-        bn::fixed vy;
+        bn::fixed _vx;
+        bn::fixed _vy;
     };
 }
 #endif
