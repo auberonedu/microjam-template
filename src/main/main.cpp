@@ -13,6 +13,7 @@
 int main()
 {
     bn::core::init();
+
     bn::unique_ptr<mj::core> core_ptr(new mj::core());
     mj::core& core = *core_ptr;
 
@@ -43,7 +44,7 @@ int main()
             {
                 switch(*next_scene_ptr)
                 {
-                
+
                 case mj::scene_type::INTRO:
                     scene.reset(new mj::intro_scene(core));
                     break;
