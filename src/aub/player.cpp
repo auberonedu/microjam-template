@@ -49,16 +49,16 @@ void aub::player::_update_position() {
  */
 void aub::player::_update_animation() {
     if(bn::keypad::left_pressed()) {
-       _sprite_action = bn::create_sprite_animate_action_forever(_sprite, 16, bn::sprite_items::aub_triangle.tiles_item(), 8, 9, 10, 11);
+       _sprite_action = bn::create_sprite_animate_action_forever(_sprite, 8, bn::sprite_items::aub_triangle.tiles_item(), 8, 9, 10, 11);
     }
     if(bn::keypad::right_pressed()) {
-        _sprite_action = bn::create_sprite_animate_action_forever(_sprite, 16, bn::sprite_items::aub_triangle.tiles_item(), 0, 1, 2, 3);
+        _sprite_action = bn::create_sprite_animate_action_forever(_sprite, 8, bn::sprite_items::aub_triangle.tiles_item(), 0, 1, 2, 3);
     }
     if(bn::keypad::up_pressed()) {
-        _sprite_action = bn::create_sprite_animate_action_forever(_sprite, 16, bn::sprite_items::aub_triangle.tiles_item(), 4, 5, 6, 7);
+        _sprite_action = bn::create_sprite_animate_action_forever(_sprite, 8, bn::sprite_items::aub_triangle.tiles_item(), 4, 5, 6, 7);
     }
     if(bn::keypad::down_pressed()) {
-       _sprite_action = bn::create_sprite_animate_action_forever(_sprite, 16, bn::sprite_items::aub_triangle.tiles_item(), 12, 13, 14, 15);
+       _sprite_action = bn::create_sprite_animate_action_forever(_sprite, 8, bn::sprite_items::aub_triangle.tiles_item(), 12, 13, 14, 15);
     }
     _sprite_action.update();
 }
