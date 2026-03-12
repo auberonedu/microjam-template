@@ -47,6 +47,16 @@ class player {
         bn::sprite_animate_action<4> _sprite_action;
         // The pixels/frame the player moves in each dimension
         bn::fixed _speed;
+
+        /**
+         * Reads from the d-pad and moves the player by one frame accordingly.
+         */
+        void _update_position();
+        /**
+         * Reads from the d-pad and sets direction sprites is pointing.
+         * Regardless of direction, updates the sprite animation action.
+         */
+        void _update_animation();
         
 };
 

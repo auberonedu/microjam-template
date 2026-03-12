@@ -19,10 +19,16 @@ player::player(bn::fixed_point starting_position, bn::fixed speed) :
     _speed(speed)
     {}
 
+
+void player::update() {
+    _update_position();
+    _update_animation();
+}
+
 /**
  * Reads from the d-pad and moves the player by one frame accordingly.
  */
-void player::update() {
+void aub::player::_update_position() {
     if(bn::keypad::left_held()) {
         _sprite.set_x(_sprite.x() - _speed);
     }
@@ -35,7 +41,13 @@ void player::update() {
     if(bn::keypad::down_held()) {
         _sprite.set_y(_sprite.y() + _speed);
     }
+}
 
+/**
+ * Reads from the d-pad and sets direction sprites is pointing.
+ * Regardless of direction, updates the sprite animation action.
+ */
+void aub::player::_update_animation() {
     if(bn::keypad::left_pressed()) {
        _sprite_action = bn::create_sprite_animate_action_forever(_sprite, 16, bn::sprite_items::aub_triangle.tiles_item(), 8, 9, 10, 11);
     }
@@ -48,7 +60,6 @@ void player::update() {
     if(bn::keypad::down_pressed()) {
        _sprite_action = bn::create_sprite_animate_action_forever(_sprite, 16, bn::sprite_items::aub_triangle.tiles_item(), 12, 13, 14, 15);
     }
-
     _sprite_action.update();
 }
 
