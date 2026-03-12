@@ -3,6 +3,7 @@
 
 #include <bn_fixed_point.h>
 #include <bn_sprite_ptr.h>
+#include <bn_sprite_animate_actions.h>
 #include <bn_display.h>
 
 
@@ -43,8 +44,10 @@ class player {
     private:
         // The sprite to display the player
         bn::sprite_ptr _sprite;
+        bn::sprite_animate_action<4> _sprite_action;
         // The pixels/frame the player moves in each dimension
         bn::fixed _speed;
+        
 };
 
 }
