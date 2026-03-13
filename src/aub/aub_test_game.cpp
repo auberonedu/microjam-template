@@ -40,7 +40,7 @@ namespace aub
  */
 aub_test_game::aub_test_game([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data& data) :
     mj::game("aub"),
-    _background(bn::regular_bg_items::square_field_bg.create_bg()),
+    _background(bn::regular_bg_items::square_field_bg.create_bg()), // oh no
     _player(player({20, 0}, 2))
     {}
 
