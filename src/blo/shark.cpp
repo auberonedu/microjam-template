@@ -1,6 +1,7 @@
 #include "blo/shark.h"
 
 #include <bn_keypad.h>
+#include "bn_sprite_items_shark.h"
 
 namespace blo
 {
@@ -17,7 +18,7 @@ namespace blo
      * Function that returns true if the shark has not been hit yet, false if it has
      *
      */
-    bool shark::isAlive()
+    bool shark::punched() const
     {
         return false;
     }

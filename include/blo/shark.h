@@ -2,6 +2,7 @@
 
 #include <bn_fixed_point.h>
 #include <bn_sprite_ptr.h>
+#include <bn_sprite_item.h>
 
 namespace blo
 {
@@ -16,8 +17,11 @@ namespace blo
          */
         shark(bn::fixed_point starting_position);
 
+        bool punched() const;
+
     private:
         // The sprite to display the shark
         bn::sprite_ptr _sprite;
-    }
+        
+    };
 }
