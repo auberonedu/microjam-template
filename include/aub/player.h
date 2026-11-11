@@ -1,3 +1,4 @@
+
 #pragma once
 
 #include <bn_fixed_point.h>
