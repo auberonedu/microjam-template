@@ -19,9 +19,12 @@ namespace blo
 
         bool punched() const;
 
+        // Checks to see if the shark is fully emerged (Ready to hit)
+        bool isEmerged() const;
+
     private:
         // The sprite to display the shark
         bn::sprite_ptr _sprite;
-        
+
     };
 }

@@ -23,4 +23,13 @@ namespace blo
         return false;
     }
 
+    /**
+     * Function that returns true if the shark has fully emerged, false if it has not
+     *
+     */
+    bool shark::isEmerged() const
+    {
+        return false;
+    }
+
 }
