@@ -38,7 +38,7 @@ namespace blo
      */
     bn::string<16> blo_SharkASnack::title() const
     {
-        return "Protect your snacks!!";
+        return "Guard your snack";
     };
 
     /**
@@ -59,7 +59,7 @@ namespace blo
      */
     mj::game_result blo_SharkASnack::play(const mj::game_data &data)
     {
-        mj::game_result result(victory(), false);
+        mj::game_result result(!_player.hasSnack(), false);
         return result;
     };
 
@@ -69,8 +69,7 @@ namespace blo
      */
     bool blo_SharkASnack::victory() const
     {
-        if(_player.hasSnack())
-        return false;
+        return _player.hasSnack();
     };
 
     /**
