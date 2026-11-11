@@ -1,5 +1,4 @@
-#ifndef AUB_TEST_GAME_H // Include guard must start with the 3-letter id
-#define AUB_TEST_GAME_H
+#pragma once
 
 #include <bn_regular_bg_ptr.h>
 #include <bn_sprite_ptr.h>
@@ -90,4 +89,3 @@ class aub_test_game : public mj::game
 
 }
 
-#endif
