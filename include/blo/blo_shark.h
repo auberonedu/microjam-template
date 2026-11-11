@@ -17,6 +17,12 @@ namespace blo
          */
         shark(bn::fixed_point starting_position);
 
+        void update();
+
+        // Punches the shark
+        void punch();
+
+        // Checks to see if the shark has been punched
         bool punched() const;
 
         // Checks to see if the shark is fully emerged (Ready to hit)
@@ -25,6 +31,8 @@ namespace blo
     private:
         // The sprite to display the shark
         bn::sprite_ptr _sprite;
+        bool _punched = false;
+        int _frames = 0;
 
     };
 }

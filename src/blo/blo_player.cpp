@@ -1,4 +1,5 @@
-#include "blo/player.h"
+#include "blo/blo_player.h"
+#include "blo/blo_shark.h"
 
 #include <bn_keypad.h>
 
@@ -10,9 +11,11 @@ namespace blo {
     {
     }
 
-    void player::update() {
+    void player::update(shark& target) {
         if (bn::keypad::a_pressed()){
-            
+            if(target.isEmerged()){
+                target.punch();
+            }
         }
     }
 

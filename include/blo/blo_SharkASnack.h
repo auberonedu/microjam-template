@@ -5,7 +5,8 @@
 
 #include "mj/mj_game.h"
 
-#include "blo/player.h"
+#include "blo/blo_player.h"
+#include "blo/blo_shark.h"
 
 namespace blo
 {
@@ -64,6 +65,7 @@ namespace blo
             void fade_out(const mj::game_data &data) override;
         private:
             player _player;
+            shark _shark;
     };
 }
 

@@ -25,7 +25,10 @@ namespace blo
      * @param completed_games how many microgames the player has completed so far
      * @param data shared information, such as a rng and number of frames left in the microgame
      */
-    blo_SharkASnack::blo_SharkASnack([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data &data) : mj::game("blo")
+    blo_SharkASnack::blo_SharkASnack([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data &data) : 
+    mj::game("blo"),
+    _player(player()),
+    _shark(shark({0, 0}))
     {
     }
 
@@ -57,7 +60,10 @@ namespace blo
      */
     mj::game_result blo_SharkASnack::play(const mj::game_data &data)
     {
-        mj::game_result result(!_player.hasSnack(), false);
+        _player.update(_shark);
+        _shark.update();
+
+        mj::game_result result(victory(), false);
         return result;
     };
 
@@ -67,7 +73,7 @@ namespace blo
      */
     bool blo_SharkASnack::victory() const
     {
-        return _player.hasSnack();
+        return _shark.punched();
     };
 
     /**

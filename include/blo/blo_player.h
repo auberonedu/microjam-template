@@ -1,6 +1,9 @@
 #pragma once
 namespace blo {
 
+    class shark;
+
+
     class player {
         public:
             /**
@@ -8,7 +11,7 @@ namespace blo {
              */
             player();
 
-            void update();
+            void update(shark& target);
 
             bool hasSnack() const;
         private:
