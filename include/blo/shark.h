@@ -16,6 +16,12 @@ namespace blo
          */
         shark(bn::fixed_point starting_position);
 
+        // Checks if the shark is successfully hit on time
+        bool isAlive() const;
+
+        // Checks to see if the shark is fully emerged (Ready to hit)
+        bool isEmerged() const;
+
     private:
         // The sprite to display the shark
         bn::sprite_ptr _sprite;
